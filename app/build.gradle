@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "le.qulei.pre.compile"
         minSdkVersion 15
@@ -24,7 +24,14 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
+
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:design:25.1.1'
+
     testCompile 'junit:junit:4.12'
+
+    //框架Module配置
+    compile project(':precompile-library')
+    compile project(':precompile-annotation')
+    annotationProcessor project(':precompile-compiler') //预编译配置
 }

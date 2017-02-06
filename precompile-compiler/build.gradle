@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+def logger = new com.android.build.gradle.internal.LoggerWrapper(project.logger)
+def sdkHandler = new com.android.build.gradle.internal.SdkHandler(project, logger)
+for (File file : sdkHandler.sdkLoader.repositories) {
+    repositories.maven {
+        url = file.toURI()
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':precompile-annotation')
+    compile deps.autoservice
+    compile deps.autocommon
+    compile deps.javapoet
+
+    compileOnly files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
